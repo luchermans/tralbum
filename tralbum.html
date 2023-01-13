@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='icon' type='image/x-icon' href='fonts/favicon.ico'>
+  <link rel='stylesheet' href='fonts/font-awesome.min.css'>
+  <link rel='stylesheet' href='css/tralbum.css'>
+  <link rel='stylesheet' href='css/nav.css'>
+  <title>Tralbum</title>
+  <script src='https://polyfill.io/v3/polyfill.min.js?features=default'></script>
+  <script src='js/nav.js'></script>
+  <script src='js/tralbum.js'></script>
+  <script src='js/secret.js'></script>
+</head>
+<body>
+
+<div class='topnav'>
+  <a href='#home' class='active' id='title' onclick='nav.menu_set()'>Travel Album</a>
+  <div id='menus'></div>
+  <a href='javascript:void(0);' class='icon' onclick='nav.toggle()'><i class='fa fa-bars'></i></a>
+</div>
+<div class='divnav' id='Home'>
+    <div id='map'></div>
+</div>
+<div class='divnav' id='Albums'>
+    <button id='gapp_auth_btn' onclick='handleAuthClick()'>Load Travel albums</button>
+    <button id='gapp_signout_btn' onclick='handleSignoutClick()'>Sign Out</button>
+    <div id='album_status'>Press Load to load your albums</div>
+    <div id='gapp_status' hidden>status</div>
+    <ul id='album_list'></ul>
+</div>
+<div class='divnav' id='About'>
+    <br><b>Github: </b><a href='https://github.com/luchermans/tralbum'> Tralbum</a>
+</div>
+
+<script>nav.init('Travel Album', ['Home', 'Albums', 'About']);</script>
+<!--
+ The `defer` attribute causes the callback to execute after the full HTML
+ document has been parsed. For non-blocking uses, avoiding race conditions,
+ and consistent behavior across browsers, consider loading using Promises
+ with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+-->
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly' defer></script>
+<script src='js/gapp.js'></script>
+<script src='js/geo_album.js'></script>
+<script>
+window.initMap = initMap;
+</script>
+<script async defer src='https://apis.google.com/js/api.js' onload='gapiLoaded()'></script>
+<script async defer src='https://accounts.google.com/gsi/client' onload='gisLoaded()'></script>
+</body>
+</html>
